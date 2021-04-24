@@ -10,13 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    sourcedbdialog.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    sourcedbdialog.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    sourcedbdialog.ui
 
 TRANSLATIONS += \
     CodePlus_zh_CN.ts

@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    sourceDbDialog=new SourceDbDialog(this);
 }
 
 MainWindow::~MainWindow()
@@ -13,3 +14,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    sourceDbDialog->show();
+}
