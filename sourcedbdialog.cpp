@@ -25,6 +25,7 @@ void SourceDbDialog::on_btBox_accepted()
 {
     db = QSqlDatabase::addDatabase("QPSQL");
     db.setHostName(ui->editHost->text());
+    db.setPort(5432);
     db.setUserName(ui->editUserName->text());
     db.setPassword(ui->editPassword->text());
     db.setDatabaseName(ui->editDB->text());
@@ -37,9 +38,31 @@ void SourceDbDialog::on_btBox_accepted()
     }
 
     QSqlQuery query;
-    if(query.exec("SELECT id, name, age, gender, married FROM employee"))
+    if(query.exec("select datname from pg_database;"))
     {
+        while(query.next())
+            {
+                QString strDb=query.value(0).toString();
+                qDebug()<<strDb<<endl;
+        }
+    }
 
+    if(query.exec("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"))
+    {
+        while(query.next())
+            {
+                QString strDb=query.value(0).toString();
+                qDebug()<<strDb<<endl;
+        }
+    }
+
+    if(query.exec("SELECT column_name FROM information_schema.columns WHERE table_name ='newtable';"))
+    {
+        while(query.next())
+            {
+                QString strDb=query.value(0).toString();
+                qDebug()<<strDb<<endl;
+        }
     }
     db.close();
 }
