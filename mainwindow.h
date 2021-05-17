@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "sourcedbdialog.h"
+#include "DBLogin.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,7 +21,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    SourceDbDialog *sourceDbDialog;
+    DBLogin *dbLogin;
 
 };
 #endif // MAINWINDOW_H
