@@ -133,7 +133,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -160,6 +160,13 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>editHost</tabstop>
+  <tabstop>editPort</tabstop>
+  <tabstop>editUserName</tabstop>
+  <tabstop>editPassword</tabstop>
+  <tabstop>editDB</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

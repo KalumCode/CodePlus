@@ -21,8 +21,6 @@ DBLogin::~DBLogin()
     delete ui;
 }
 
-//https://www.wangt.cc/2021/02/qt5%E6%95%B0%E6%8D%AE%E5%BA%93postgresql%E5%BA%94%E7%94%A82/
-
 void DBLogin::on_btBox_accepted()
 {
     db = QSqlDatabase::addDatabase("QPSQL");
@@ -84,21 +82,28 @@ void DBLogin::readINIFile()
     fileName+="/DataBases.ini";
     //读取配置文件
     dbSettings=new QSettings(fileName,QSettings::IniFormat);
-    ui->editHost->setText(dbSettings->value("DATA_BASE/host_name").toString());
-    ui->editPort->setText(dbSettings->value("DATA_BASE/port").toString());
-    ui->editUserName->setText(dbSettings->value("DATA_BASE/user_name").toString());
-    ui->editPassword->setText(dbSettings->value("DATA_BASE/password").toString());
-    ui->editDB->setText(dbSettings->value("DATA_BASE/database_name").toString());
+    ui->editHost->setText(getDefaultString(dbSettings->value("DATA_BASE/host_name").toString(),"localhost"));
+    ui->editPort->setText(getDefaultString(dbSettings->value("DATA_BASE/port").toString(),"5432"));
+    ui->editUserName->setText(getDefaultString(dbSettings->value("DATA_BASE/user_name").toString(),"postgres"));
+    ui->editPassword->setText(getDefaultString(dbSettings->value("DATA_BASE/password").toString(),""));
+    ui->editDB->setText(getDefaultString(dbSettings->value("DATA_BASE/database_name").toString(),"postgres"));
 }
 
 void DBLogin::updateIniFile(){
     QString fileName= QCoreApplication::applicationDirPath();
     fileName+="/DataBases.ini";
 
-    QSettings settings(fileName, QSettings::IniFormat);
+    QSettings settings(fileName, QSettings::IniFormat);   
     settings.setValue("DATA_BASE/host_name", ui->editHost->text());
     settings.setValue("DATA_BASE/port", ui->editPort->text());
     settings.setValue("DATA_BASE/user_name", ui->editUserName->text());
     settings.setValue("DATA_BASE/password", ui->editPassword->text());
     settings.setValue("DATA_BASE/database_name", ui->editDB->text());
+}
+
+QString DBLogin::getDefaultString(QString valString,QString defaultString){
+    if(valString.isNull()){
+        return defaultString;
+    }
+    return valString;
 }

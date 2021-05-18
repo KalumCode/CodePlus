@@ -38,6 +38,7 @@ private:
     //读取配置文件
     void readINIFile();
     void updateIniFile();
+    QString getDefaultString(QString valString,QString defaultString);
 
 };
 

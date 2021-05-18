@@ -9,10 +9,11 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     DBLogin login;
+    MainWindow w;
 
     if(login.exec()==LOGINSUCCESS)
     {
-        MainWindow w;
+        qDebug()<<"login"<<endl;
         w.show();
     }
 
