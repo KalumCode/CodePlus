@@ -7,6 +7,8 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSettings>
+#include <QStandardItemModel>
+#include <QStyleFactory>
 
 #include "DBLogin.h"
 
